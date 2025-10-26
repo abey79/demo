@@ -15,3 +15,45 @@ dev = [
     "pytest>=8.3.4",
     "ruff>=0.9.1",
 ]
+
+
+[tool.ruff]
+# Ruff has a build-in formatter. On the command line: `ruff format` (but you should definitely configure your IDE to
+# format on save with ruff.
+
+# Default is 88, which is way too narrow imo
+line-length = 120
+
+
+[tool.ruff.lint]
+# Ruff has a built-in linter. On the command line: `ruff check`. Auto-fix some issues with `ruff check --fix`.
+
+# Claude proposed these rules as a good default. Take with a grain of salt and customize to your liking.
+# Documentation for all rules is here: https://docs.astral.sh/ruff/rules/
+# Note: linter can feel annoying, but are often a good way to learn idiomatic Python.
+
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort (import sorting)
+    "N",   # pep8-naming
+    "UP",  # pyupgrade (modernize Python code)
+    "B",   # flake8-bugbear (catch likely bugs)
+    "C4",  # flake8-comprehensions (better list/dict/set comprehensions)
+    "PIE", # flake8-pie (misc. lints)
+    "RET", # flake8-return (return statement issues)
+    "SIM", # flake8-simplify (simplification suggestions)
+]
+
+# Disable overly pedantic rules
+ignore = [
+    "E501",   # line too long (let formatter handle it)
+    "E741",   # ambiguous variable name (l, O, I) - sometimes fine in scripts
+    "N802",   # function name should be lowercase - allow some flexibility
+    "N806",   # variable in function should be lowercase - allow some flexibility
+    "B008",   # do not perform function calls in argument defaults - common pattern
+    "RET504", # unnecessary variable assignment before return - sometimes clearer
+    "SIM108", # use ternary operator - sometimes if/else is clearer
+    "UP007",  # use X | Y for type annotations - allow Optional[] style
+]
